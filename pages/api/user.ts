@@ -1,8 +1,9 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import { DefaultMsgResponse } from '../../types/DefaultMsgResponse';
 import {UserModel} from '../../models/UserModel';
+import {connect} from '../..//middlewares/connectToMongoDB'
 
-export default async (req : NextApiRequest, res: NextApiResponse<DefaultMsgResponse>) => {
+const registerEndPoint = async (req : NextApiRequest, res: NextApiResponse<DefaultMsgResponse>) => {
 
     try{        
         if(req.method === 'POST'){
@@ -12,7 +13,7 @@ export default async (req : NextApiRequest, res: NextApiResponse<DefaultMsgRespo
                 return res.status(400).json({error : 'Nome não é válido'});
             }
 
-            if(!email || email.trim().length < 5 || !email.include('@') || !email.include('.')){
+            if(!email || email.trim().length < 5 || !email.includes('@') || !email.includes('.')){
                 return res.status(400).json({error : 'E-mail não é válido'});
             }
 
@@ -20,8 +21,8 @@ export default async (req : NextApiRequest, res: NextApiResponse<DefaultMsgRespo
                 return res.status(400).json({error : 'Senha deve ter pelo menos 6 caracteres'});
             }
 
-            const user ={
-                name,
+            const user = {
+                name,                                
                 email,
                 password
             };
@@ -40,3 +41,5 @@ export default async (req : NextApiRequest, res: NextApiResponse<DefaultMsgRespo
     }
 
 };
+
+export default connect(registerEndPoint);
