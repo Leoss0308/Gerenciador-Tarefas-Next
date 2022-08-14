@@ -33,4 +33,10 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-1.0
+## Figma Doc
+
+https://www.figma.com/file/knytjAN1Sb4DYxtMLNv8xw/FIAP
+
+## Recommended tools
+
+- [Adobe Colors](https://color.adobe.com/pt/create/color-wheel)
